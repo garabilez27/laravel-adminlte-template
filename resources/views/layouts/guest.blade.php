@@ -37,4 +37,11 @@
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+<script>
+    $(function () {
+        toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    });
+</script>
 </html>

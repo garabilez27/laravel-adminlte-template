@@ -46,6 +46,8 @@
 <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
 <script>
     $(function () {
         $('#dataTable').DataTable({
