@@ -15,7 +15,6 @@ class SubMenuSeeder extends Seeder
         DB::table('tbl_sub_menus')->insert([
             [
                 'sbmn_id' => 'SBMN00001',
-                'sbmn_prefix' => 'dshbrd',
                 'sbmn_detail' => 'Dashboard',
                 'sbmn_reference' => 'dashboard',
                 'sbmn_icon' => 'fa-home',
@@ -23,9 +22,8 @@ class SubMenuSeeder extends Seeder
             ],
             [
                 'sbmn_id' => 'SBMN00002',
-                'sbmn_prefix' => 'sttng',
                 'sbmn_detail' => 'Settings',
-                'sbmn_reference' => 'setting',
+                'sbmn_reference' => 'settings',
                 'sbmn_icon' => 'fa-cogs',
                 'mn_id' => 'MN00002',
             ],

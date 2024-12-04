@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class SettingsController extends Controller
 {
     public function index()
     {
-        return $this->render('dashboard');
+        return $this->render('settings');
     }
 
     private function render(string $page, array $records = [])
     {
         $data = [
-            's_menu' => 'dshbrd',
+            's_menu' => 'sttng',
             's_submenu' => '',
             'records' => $records,
         ];

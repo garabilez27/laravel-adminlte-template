@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('tbl_sub_menus', function (Blueprint $table) {
             $table->string('sbmn_id', 32)->primary();
-            $table->string('sbmn_prefix', 10)->unique();
             $table->string('sbmn_detail');
             $table->string('sbmn_reference', 191)->unique();
             $table->string('sbmn_icon');

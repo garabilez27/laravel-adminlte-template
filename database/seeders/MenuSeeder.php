@@ -24,8 +24,8 @@ class MenuSeeder extends Seeder
                 'mn_id' => 'MN00002',
                 'mn_prefix' => 'sttng',
                 'mn_detail' => 'Settings',
-                'mn_reference' => 'setting',
-                'mn_icon' => 'fa-cogs',
+                'mn_reference' => 'settings',
+                'mn_icon' => 'fa-tools',
             ],
         ]);
     }

@@ -33,7 +33,7 @@ class Users extends Model
             $sub_menus = RoleSubMenus::where('rlmn_id', $mn->rlmn_id)->join('tbl_sub_menus', 'tbl_role_sub_menus.sbmn_id', 'tbl_sub_menus.sbmn_id')->get();
             foreach($sub_menus as $sb)
             {
-                $role_sub_menus[] = [
+                $role_sub_menus[$sb->sbmn_reference] = [
                     'detail' => $sb->sbmn_detail,
                     'icon' => $sb->sbmn_icon,
                     'reference' => $sb->sbmn_reference,

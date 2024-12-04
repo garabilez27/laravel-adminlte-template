@@ -34,7 +34,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                @foreach ($user->menus as $menu)
+                @foreach ($user->menus as $mn => $menu)
                     @if ($menu['branched'])
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -45,7 +45,7 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            @foreach ($menu['sub'] as $sub)
+                            @foreach ($menu['sub'] as $sb => $sub)
                                 @if ($sub['menu'])
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
@@ -59,7 +59,7 @@
                     </li>
                     @else
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ $menu['reference'] }}" class="nav-link {{ $mn == $s_menu ? 'active' : ''}}">
                             <i class="nav-icon fa {{ $menu['icon'] }}"></i>
                             <p>
                                 {{ $menu['detail'] }}
