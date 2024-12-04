@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('tbl_users', function (Blueprint $table) {
             $table->string('usr_id',32)->primary();
-            $table->string('usr_fname', 32);
-            $table->string('usr_lname', 32);
-            $table->string('usr_phone', 12)->nullable();
-            $table->string('usr_email', length: 128)->unique();
-            $table->string('usr_password', 191);
-            $table->string('usr_image', 191)->nullable();
+            $table->string('usr_fname');
+            $table->string('usr_lname');
+            $table->string('usr_phone')->nullable();
+            $table->string('usr_email', length: 191)->unique();
+            $table->string('usr_password');
+            $table->string('usr_image')->nullable();
             $table->unsignedTinyInteger('usr_active')->default(1);
             $table->unsignedTinyInteger('usr_deleted')->default(0);
             $table->timestamp('usr_created_at')->useCurrent();

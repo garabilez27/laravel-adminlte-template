@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('val_id');
             $table->string('val_prefix', 8);
             $table->integer('val_value');
-            $table->string('val_for', 191);
+            $table->string('val_for');
             $table->timestamp('val_created_at')->useCurrent();
             $table->timestamp('val_updated_at')->useCurrent()->useCurrentOnUpdate();
         });

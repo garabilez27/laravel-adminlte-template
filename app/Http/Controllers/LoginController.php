@@ -20,4 +20,9 @@ class LoginController extends Controller
     {
         return view('pages.forgot-password');
     }
+
+    public function validate(Request $request)
+    {
+
+    }
 }

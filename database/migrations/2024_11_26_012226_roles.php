@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tbl_roles', function (Blueprint $table) {
             $table->string('rl_id',32)->primary();
-            $table->string('rl_name', 64)->unique();
+            $table->string('rl_detail', 64)->unique();
             $table->unsignedInteger('rl_level')->nullable();
             $table->unsignedTinyInteger('rl_active')->default(1);
             $table->unsignedTinyInteger('rl_deleted')->default(0);

@@ -15,4 +15,6 @@ Route::middleware(Guest::class)->group(function() {
     Route::get('/', [LoginController::class, 'index'])->name('signin');
     Route::get('/add', [LoginController::class, 'add'])->name('signup');
     Route::get('/reset', [LoginController::class, 'reset'])->name('reset');
+
+    Route::post('/validate', [LoginController::class, 'validate'])->name('validate');
 });
