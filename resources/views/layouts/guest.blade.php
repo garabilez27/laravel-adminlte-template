@@ -39,9 +39,12 @@
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
 <!-- Toastr -->
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+@if (session()->has('message'))
 <script>
     $(function () {
-        toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        toastr.error("{{ session('message') }}");
     });
 </script>
+@endif
+
 </html>
