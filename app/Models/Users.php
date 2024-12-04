@@ -22,4 +22,35 @@ class Users extends Model
 
         return $user;
     }
+
+    public function menus(string $roleID)
+    {
+        $role_menus = [];
+        $menus = RoleMenus::where('rl_id', $roleID)->join('tbl_menus', 'tbl_role_menus.mn_id', 'tbl_menus.mn_id') ->get();
+        foreach($menus as $mn)
+        {
+            $role_sub_menus = [];
+            $sub_menus = RoleSubMenus::where('rlmn_id', $mn->rlmn_id)->join('tbl_sub_menus', 'tbl_role_sub_menus.sbmn_id', 'tbl_sub_menus.sbmn_id')->get();
+            foreach($sub_menus as $sb)
+            {
+                $role_sub_menus[] = [
+                    'detail' => $sb->sbmn_detail,
+                    'icon' => $sb->sbmn_icon,
+                    'reference' => $sb->sbmn_reference,
+                    'menu' => $sb->sbmn_menu,
+                    'class' => $sb->sbmn_class,
+                ];
+            }
+
+            $role_menus[$mn->mn_prefix] = [
+                'detail' => $mn->mn_detail,
+                'icon' => $mn->mn_icon,
+                'reference' => $mn->mn_reference,
+                'branched' => $mn->mn_branched,
+                'sub' => $role_sub_menus,
+            ];
+        }
+
+        return $role_menus;
+    }
 }

@@ -40,6 +40,7 @@ class LoginController extends Controller
         $userData->id = md5($user->usr_id);
         $userData->firstname = $user->usr_fname;
         $userData->lastname = $user->usr_lname;
+        $userData->menus = $user->menus($user->rl_id);
         session()->put('user', $userData);
 
         return redirect()->route('dashboard');
