@@ -32,7 +32,7 @@ class LoginController extends Controller
         $user = Users::authenticate($inputs);
         if(is_null($user))
         {
-            return redirect()->route('signin')->with('message', 'Invalid credentials.');
+             return redirect()->route('signin')->with('message', 'Invalid credentials.');
         }
 
         // Create user data to pass in session
@@ -41,7 +41,7 @@ class LoginController extends Controller
         $userData->firstname = $user->usr_fname;
         $userData->lastname = $user->usr_lname;
         $userData->menus = $user->menus($user->rl_id);
-        session()->put('user', $userData);
+         session()->put('user', $userData);
 
         return redirect()->route('dashboard');
     }
