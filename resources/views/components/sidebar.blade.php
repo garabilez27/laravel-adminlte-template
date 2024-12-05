@@ -36,8 +36,8 @@
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 @foreach ($user->menus as $mn => $menu)
                     @if ($menu['branched'])
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ $mn == $s_menu ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link {{ $mn == $s_menu ? 'active' : ''}}">
                             <i class="nav-icon fa {{ $menu['icon'] }}"></i>
                             <p>
                                 {{ $menu['detail'] }}
@@ -48,7 +48,7 @@
                             @foreach ($menu['sub'] as $sb => $sub)
                                 @if ($sub['menu'])
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route($sub['reference']) }}" class="nav-link {{ $sub['reference'] == $s_submenu ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>{{ $sub['detail'] }}</p>
                                     </a>
@@ -59,7 +59,7 @@
                     </li>
                     @else
                     <li class="nav-item">
-                        <a href="{{ $menu['reference'] }}" class="nav-link {{ $mn == $s_menu ? 'active' : ''}}">
+                        <a href="{{ route($menu['reference']) }}" class="nav-link {{ $mn == $s_menu ? 'active' : ''}}">
                             <i class="nav-icon fa {{ $menu['icon'] }}"></i>
                             <p>
                                 {{ $menu['detail'] }}

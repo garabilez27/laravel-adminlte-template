@@ -10,7 +10,7 @@
 
                 <div class="info-box-content">
                     <span class="info-box-text">{{ $sub['detail'] }}</span>
-                    <span class="info-box-number"><a href="#">Show More</a></span>
+                    <span class="info-box-number"><a href="{{ route($sub['reference']) }}">Show More</a></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>

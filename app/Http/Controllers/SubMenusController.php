@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SettingsController extends Controller
+class SubMenusController extends Controller
 {
     private $prefix = 'sttng';
 
     public function index()
     {
-        return $this->render('settings');
+        return $this->render('index');
     }
 
-    private function render(string $page, array $records = [])
+    private function render($page, $records = [])
     {
         $data = [
             's_menu' => $this->prefix,
-            's_submenu' => '',
+            's_submenu' => $this->getSubMenu($this->prefix, $page, 'sbmn'),
             'records' => $records,
         ];
 
-        return view('pages.'.$page, $data);
+        return view('pages.menus.'.$page, $data);
     }
 }

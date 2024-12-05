@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         $data = [
             's_menu' => $this->prefix,
-            's_submenu' => $page == 'index' ? '' : $this->prefix.'.'.$page,
+            's_submenu' => '',
             'records' => $records,
         ];
 

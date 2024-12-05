@@ -7,7 +7,9 @@ use App\Http\Middleware\Guest;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MenusController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SubMenusController;
 
 Route::middleware(Authorized::class)->group(function() {
     Route::get('/terminate', [LoginController::class, 'logout'])->name('signout');
@@ -15,6 +17,14 @@ Route::middleware(Authorized::class)->group(function() {
 
     Route::prefix('settings')->group(function() {
         Route::get('/', [SettingsController::class, 'index'])->name('settings');
+
+        Route::prefix('menus')->group(function() {
+            Route::get('/', [MenusController::class, 'index'])->name('mn.index');
+        });
+
+        Route::prefix('subs')->group(function() {
+            Route::get('/', [SubMenusController::class, 'index'])->name('sbmn.index');
+        });
     });
 });
 
