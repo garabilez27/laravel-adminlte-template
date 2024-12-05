@@ -15,16 +15,16 @@ class SubMenuSeeder extends Seeder
         DB::table('tbl_sub_menus')->insert([
             [
                 'sbmn_id' => 'SBMN00001',
-                'sbmn_detail' => 'Dashboard',
-                'sbmn_reference' => 'dashboard',
-                'sbmn_icon' => 'fa-home',
+                'sbmn_detail' => 'Menus',
+                'sbmn_reference' => 'mn.index',
+                'sbmn_icon' => 'fa-bars',
                 'mn_id' => 'MN00002',
             ],
             [
                 'sbmn_id' => 'SBMN00002',
-                'sbmn_detail' => 'Settings',
-                'sbmn_reference' => 'settings',
-                'sbmn_icon' => 'fa-cogs',
+                'sbmn_detail' => 'Sub Menus',
+                'sbmn_reference' => 'sbmn.index',
+                'sbmn_icon' => 'fa-code-branch',
                 'mn_id' => 'MN00002',
             ],
         ]);
