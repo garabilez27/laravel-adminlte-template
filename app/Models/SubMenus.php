@@ -10,4 +10,9 @@ class SubMenus extends Model
     protected $primaryKey = 'sbmn_id';
     public $timestamps = false;
     public $incrementing = false;
+
+    public function details()
+    {
+        return $this->belongsTo(Menus::class, 'mn_id');
+    }
 }

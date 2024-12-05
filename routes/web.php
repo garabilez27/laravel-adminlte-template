@@ -20,6 +20,7 @@ Route::middleware(Authorized::class)->group(function() {
 
         Route::prefix('menus')->group(function() {
             Route::get('/', [MenusController::class, 'index'])->name('mn.index');
+            Route::get('/add', [MenusController::class, 'add'])->name('mn.add');
         });
 
         Route::prefix('subs')->group(function() {

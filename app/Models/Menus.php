@@ -10,4 +10,9 @@ class Menus extends Model
     protected $primaryKey = 'mn_id';
     public $timestamps = false;
     public $incrementing = false;
+
+    public function subs()
+    {
+        return $this->hasMany(SubMenus::class, 'mn_id', 'mn_id');
+    }
 }

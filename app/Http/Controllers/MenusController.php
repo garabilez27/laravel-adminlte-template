@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menus;
 use Illuminate\Http\Request;
 
 class MenusController extends Controller
@@ -10,7 +11,13 @@ class MenusController extends Controller
 
     public function index()
     {
-        return $this->render('index');
+        $menus = Menus::where('mn_deleted', 0)->where('mn_active', 1)->get();
+        return $this->render('index', $menus);
+    }
+
+    public function add()
+    {
+        return $this->render('add');
     }
 
     private function render($page, $records = [])
