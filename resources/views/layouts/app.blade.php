@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     <!-- Toastr -->
     <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -48,6 +51,8 @@
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
 <!-- Toastr -->
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
     $(function () {
         $('#dataTable').DataTable({
@@ -82,6 +87,10 @@
         {
             event.preventDefault();
         }
+    });
+
+    $('.select').select2({
+        theme: 'bootstrap4'
     });
 </script>
 </html>

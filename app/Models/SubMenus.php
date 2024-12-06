@@ -11,8 +11,8 @@ class SubMenus extends Model
     public $timestamps = false;
     public $incrementing = false;
 
-    public function details()
+    public function menu()
     {
-        return $this->belongsTo(Menus::class, 'mn_id');
+        return $this->belongsTo(Menus::class, 'mn_id', 'mn_id');
     }
 }

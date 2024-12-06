@@ -30,6 +30,12 @@ Route::middleware(Authorized::class)->group(function() {
 
         Route::prefix('subs')->group(function() {
             Route::get('/', [SubMenusController::class, 'index'])->name('sbmn.index');
+            Route::get('/add', [SubMenusController::class, 'add'])->name('sbmn.add');
+            Route::get('{id}/edit', [SubMenusController::class, 'edit'])->name('sbmn.edit');
+            Route::get('{id}/delete', [SubMenusController::class, 'destroy'])->name('sbmn.delete');
+
+            Route::post('/create', [SubMenusController::class, 'create'])->name('sbmn.create');
+            Route::post('/update', [SubMenusController::class, 'update'])->name('sbmn.update');
         });
     });
 });

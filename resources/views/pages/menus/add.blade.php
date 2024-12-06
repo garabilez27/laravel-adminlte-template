@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="form-group mb-2">
                     <label for="prefix">Prefix <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('prefix') is-invalid @enderror" id="prefix" name="prefix" value="{{ old('prefix') }}" placeholder="Prefix" autocomplete="no">
+                    <input type="text" class="form-control @error('prefix') is-invalid @enderror" id="prefix" name="prefix" value="{{ old('prefix') }}" placeholder="Prefix" autocomplete="off">
                     @error('prefix')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="detail">Detail <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('detail') is-invalid @enderror" id="detail" name="detail" value="{{ old('detail') }}" placeholder="Detail" autocomplete="no">
+                    <input type="text" class="form-control @error('detail') is-invalid @enderror" id="detail" name="detail" value="{{ old('detail') }}" placeholder="Detail" autocomplete="off">
                     @error('detail')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="reference">Reference <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('reference') is-invalid @enderror" id="reference" name="reference" value="{{ old('reference') }}" placeholder="Reference" autocomplete="no">
+                    <input type="text" class="form-control @error('reference') is-invalid @enderror" id="reference" name="reference" value="{{ old('reference') }}" placeholder="Reference" autocomplete="off">
                     @error('reference')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="icon">Icon <span class="text-danger">*</span> <a href="https://fontawesome.com/v5/search" class="text-sm" target="_blank">[ font-awesome ]</a></label>
-                    <input type="text" class="form-control @error('icon') is-invalid @enderror" id="icon" name="icon" value="{{ old('icon') }}" placeholder="Icon" autocomplete="no">
+                    <input type="text" class="form-control @error('icon') is-invalid @enderror" id="icon" name="icon" value="{{ old('icon') }}" placeholder="Icon" autocomplete="off">
                     @error('icon')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="sequence">Sequence</label>
-                    <input type="text" class="form-control @error('sequence') is-invalid @enderror" id="sequence" name="sequence" value="{{ old('sequence') }}" placeholder="Sequence" autocomplete="no">
+                    <input type="number" class="form-control @error('sequence') is-invalid @enderror" id="sequence" name="sequence" value="{{ old('sequence') }}" placeholder="Sequence" autocomplete="off">
                     @error('sequence')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -58,7 +58,7 @@
                     @enderror
                 </div>
                 <div class="form-group mb-2">
-                    <label for="branched">Branched</label>
+                    <label for="branched">Branched <span class="text-danger">*</span></label>
                     <select name="branched" id="branched @error('branched') is-invalid @enderror" value="{{ old('branched') }}" class="form-control">
                         <option value="1">Yes</option>
                         <option value="0">No</option>
