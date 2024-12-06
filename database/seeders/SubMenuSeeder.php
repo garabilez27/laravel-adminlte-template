@@ -35,6 +35,17 @@ class SubMenuSeeder extends Seeder
                 'sbmn_view' => 1,
                 'mn_id' => 'MN00002',
             ],
+            [
+                'sbmn_id' => 'SBMN00003',
+                'sbmn_detail' => 'Roles',
+                'sbmn_reference' => 'rl.index',
+                'sbmn_icon' => 'fa-user-tag',
+                'sbmn_create' => 1,
+                'sbmn_update' => 1,
+                'sbmn_destroy' => 1,
+                'sbmn_view' => 1,
+                'mn_id' => 'MN00002',
+            ],
         ]);
     }
 }

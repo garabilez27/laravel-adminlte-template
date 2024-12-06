@@ -21,6 +21,10 @@ class RoleMenuSeeder extends Seeder
                 'rl_id' => 'RL00001',
                 'mn_id' => 'MN00002',
             ],
+            [
+                'rl_id' => 'RL00002',
+                'mn_id' => 'MN00001',
+            ],
         ]);
     }
 }

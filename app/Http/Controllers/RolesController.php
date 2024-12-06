@@ -8,7 +8,7 @@ use App\Models\Roles;
 
 class RolesController extends Controller
 {
-    private $prefix = 'rl';
+    private $prefix = 'sttng';
     private $default_route = 'rl.index';
 
     public function index(Request $request)

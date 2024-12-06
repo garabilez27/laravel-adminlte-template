@@ -21,6 +21,10 @@ class RoleSubMenuSeeder extends Seeder
                 'rlmn_id' => '2',
                 'sbmn_id' => 'SBMN00002',
             ],
+            [
+                'rlmn_id' => '2',
+                'sbmn_id' => 'SBMN00003',
+            ],
         ]);
     }
 }

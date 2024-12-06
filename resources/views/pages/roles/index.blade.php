@@ -4,6 +4,10 @@
 <form action="">
 <div class="row mb-3">
     <div class="col-12 d-flex">
+        <a href="{{ route('rl.add') }}" class="btn btn-success">
+            <i class="fa fa-plus"></i>
+            Add
+        </a>
         <div class="ml-auto">
             <div class="input-group">
                 <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search">
