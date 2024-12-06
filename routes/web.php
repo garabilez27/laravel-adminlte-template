@@ -21,6 +21,11 @@ Route::middleware(Authorized::class)->group(function() {
         Route::prefix('menus')->group(function() {
             Route::get('/', [MenusController::class, 'index'])->name('mn.index');
             Route::get('/add', [MenusController::class, 'add'])->name('mn.add');
+            Route::get('{id}/edit', [MenusController::class, 'edit'])->name('mn.edit');
+            Route::get('{id}/delete', [MenusController::class, 'destroy'])->name('mn.delete');
+
+            Route::post('/create', [MenusController::class, 'create'])->name('mn.create');
+            Route::post('/update', [MenusController::class, 'update'])->name('mn.update');
         });
 
         Route::prefix('subs')->group(function() {

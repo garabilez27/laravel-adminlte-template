@@ -10,7 +10,7 @@ class SettingsController extends Controller
 
     public function index()
     {
-        return $this->render('settings');
+        return $this->render('display');
     }
 
     private function render(string $page, array $records = [])

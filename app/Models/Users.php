@@ -39,6 +39,12 @@ class Users extends Model
                     'reference' => $sb->sbmn_reference,
                     'menu' => $sb->sbmn_menu,
                     'class' => $sb->sbmn_class,
+                    'can' => [
+                        'create' => $sb->sbmn_create,
+                        'update' => $sb->sbmn_update,
+                        'destroy' => $sb->sbmn_destroy,
+                        'view' => $sb->sbmn_view,
+                    ],
                 ];
             }
 

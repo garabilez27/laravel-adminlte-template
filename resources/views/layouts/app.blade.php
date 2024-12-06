@@ -61,4 +61,27 @@
         });
     });
 </script>
+<script>
+    $(function () {
+    @if (session()->has('message'))
+        @if (session('message')['status'] === 'Success')
+            toastr.success("{{ session('message')['content'] }}");
+        @elseif (session('message')['status'] === 'Invalid')
+            toastr.warning("{{ session('message')['content'] }}");
+        @elseif (session('message')['status'] === 'Information')
+            toastr.info("{{ session('message')['content'] }}");
+        @else
+            toastr.error("{{ session('message')['content'] }}");
+        @endif
+    @endif
+    });
+
+    $('.confirm-delete').on('click', function() {
+        let response = confirm('This action cannot be undone. Are you sure?');
+        if(!response)
+        {
+            event.preventDefault();
+        }
+    });
+</script>
 </html>

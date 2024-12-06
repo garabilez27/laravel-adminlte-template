@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
 @section('contents')
+<form action="">
+<div class="row mb-3">
+    <div class="col-12 d-flex">
+        <a href="{{ route('mn.add') }}" class="btn btn-success">
+            <i class="fa fa-plus"></i>
+            Add
+        </a>
+        <div class="ml-auto">
+            <div class="input-group">
+                <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search fa-fw"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
 <div class="row">
     <div class="col-12">
         <div class="card card-primary card-outline">
@@ -40,8 +58,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>
-                                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></a>
+                                    <a href="{{ route('mn.edit', md5($menu->mn_id)) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>
+                                    <a href="{{ route('mn.delete', md5($menu->mn_id)) }}" class="btn btn-danger btn-sm confirm-delete"><i class="fa fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         @endforeach

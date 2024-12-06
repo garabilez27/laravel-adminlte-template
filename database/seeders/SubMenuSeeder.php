@@ -18,6 +18,10 @@ class SubMenuSeeder extends Seeder
                 'sbmn_detail' => 'Menus',
                 'sbmn_reference' => 'mn.index',
                 'sbmn_icon' => 'fa-bars',
+                'sbmn_create' => 1,
+                'sbmn_update' => 1,
+                'sbmn_destroy' => 1,
+                'sbmn_view' => 1,
                 'mn_id' => 'MN00002',
             ],
             [
@@ -25,6 +29,10 @@ class SubMenuSeeder extends Seeder
                 'sbmn_detail' => 'Sub Menus',
                 'sbmn_reference' => 'sbmn.index',
                 'sbmn_icon' => 'fa-code-branch',
+                'sbmn_create' => 1,
+                'sbmn_update' => 1,
+                'sbmn_destroy' => 1,
+                'sbmn_view' => 1,
                 'mn_id' => 'MN00002',
             ],
         ]);
