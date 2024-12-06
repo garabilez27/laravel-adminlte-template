@@ -21,7 +21,7 @@ class SubMenusController extends Controller
 
         if(empty($inputs['search']) && isset($request['search']))
         {
-            return redirect()->route('mn.index');
+            return redirect()->route($this->default_route);
         }
 
         // get list
@@ -184,6 +184,13 @@ class SubMenusController extends Controller
 
     private function render($page, $records = [], string $search = '')
     {
+        // Check role if it has the menu
+        $user = session()->get('user');
+        if(!isset($user->menus[$this->prefix]))
+        {
+            return redirect('dashboard')->with('message', $this->dangerMessage('Unauthorize.'));
+        }
+
         $data = [
             's_menu' => $this->prefix,
             's_submenu' => $this->getSubMenu($this->prefix, $page, 'sbmn'),
