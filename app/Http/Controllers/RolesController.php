@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
-use App\Models\Menus;
+use App\Models\Roles;
 
-class MenusController extends Controller
+class RolesController extends Controller
 {
-    private $prefix = 'sttng';
-    private $default_route = 'mn.index';
+    private $prefix = 'rl';
+    private $default_route = 'rl.index';
 
     public function index(Request $request)
     {
@@ -25,10 +25,10 @@ class MenusController extends Controller
 
         // get list
         $search = isset($inputs['search']) ? $inputs['search'] : '';
-        $menus = Menus::where('mn_deleted', 0)->where('mn_active', 1)->get();
+        $menus = Roles::where('rl_deleted', 0)->where('rl_active', 1)->get();
         if(!empty($inputs['search']))
         {
-            $menus = Menus::where('mn_deleted', 0)->where('mn_active', 1)->whereRaw('mn_detail like ?', '%'.$search.'%')->get();
+            $menus = Roles::where('rl_deleted', 0)->where('rl_active', 1)->whereRaw('rl_detail like ?', '%'.$search.'%')->get();
         }
 
         return $this->render('index', $menus, $search);
@@ -42,31 +42,21 @@ class MenusController extends Controller
     public function create(Request $request)
     {
         $inputs = $request->validate([
-            'prefix' => 'required|max:10',
-            'detail' => 'required',
-            'reference' => 'required|unique:tbl_menus,mn_reference',
-            'icon' => 'required',
-            'sequence' => 'numeric|nullable',
-            'branched' => 'required|numeric',
+            'detail' => 'required|unique:tbl_roles,rl_detail'
         ]);
 
         try
         {
-            $id = $this->generateID(3);
+            $id = $this->generateID(1);
             if(is_null($id))
             {
                 return redirect()->route($this->default_route)->with('message', $this->dangerMessage('Error encountered in generating ID.'));
             }
 
-            $menu = new Menus();
-            $menu->mn_id = $id;
-            $menu->mn_prefix = $inputs['prefix'];
-            $menu->mn_detail = $inputs['detail'];
-            $menu->mn_reference = $inputs['reference'];
-            $menu->mn_icon = $inputs['icon'];
-            $menu->mn_sequence = $inputs['sequence'];
-            $menu->mn_branched = $inputs['branched'];
-            $menu->save();
+            $role = new Roles();
+            $role->rl_id = $id;
+            $role->rl_detail = $inputs['detail'];
+            $role->save();
 
             return redirect()->route($this->default_route)->with('message', $this->infoMessage());
         }
@@ -80,13 +70,13 @@ class MenusController extends Controller
     {
         try
         {
-            $menu = Menus::whereRaw('md5(mn_id) = ?', $id)->where('mn_deleted', 0)->first();
-            if(is_null($menu))
+            $role = Roles::whereRaw('md5(rl_id) = ?', $id)->where('rl_deleted', 0)->first();
+            if(is_null($role))
             {
                 return redirect()->route($this->default_route)->with('message', $this->warningMessage());
             }
 
-            return $this->render('edit', $menu);
+            return $this->render('edit', $role);
         }
         catch(Exception $e)
         {
@@ -97,37 +87,27 @@ class MenusController extends Controller
     public function update(Request $request)
     {
         $inputs = $request->validate([
-            'prefix' => 'required|max:10',
             'detail' => 'required',
-            'reference' => 'required',
-            'icon' => 'required',
-            'sequence' => 'numeric|nullable',
-            'branched' => 'required|numeric',
             'id' => 'required',
         ]);
 
-        // Check reference if existing
-        $count = Menus::whereRaw('md5(mn_id) <> ?', $inputs['id'])->where('mn_reference', $inputs['reference'])->count();
+        // Check detail if existing
+        $count = Roles::whereRaw('md5(rl_id) <> ?', $inputs['id'])->where('rl_detail', $inputs['detail'])->count();
         if($count > 0)
         {
-            return redirect()->back()->withErrors(['reference' => 'The reference has already been taken.']);
+            return redirect()->back()->withErrors(['detail' => 'The reference has already been taken.']);
         }
 
         try
         {
-            $menu = Menus::whereRaw('md5(mn_id) = ?', $inputs['id'])->where('mn_deleted', 0)->first();
-            if(is_null($menu))
+            $role = Roles::whereRaw('md5(rl_id) = ?', $inputs['id'])->where('rl_deleted', 0)->first();
+            if(is_null($role))
             {
                 return redirect()->route($this->default_route)->with('message', $this->warningMessage());
             }
 
-            $menu->mn_prefix = $inputs['prefix'];
-            $menu->mn_detail = $inputs['detail'];
-            $menu->mn_reference = $inputs['reference'];
-            $menu->mn_icon = $inputs['icon'];
-            $menu->mn_sequence = $inputs['sequence'];
-            $menu->mn_branched = $inputs['branched'];
-            $menu->save();
+            $role->rl_detail = $inputs['detail'];
+            $role->save();
 
             return redirect()->route($this->default_route)->with('message', $this->infoMessage('Record has been updated successfully.'));
         }
@@ -141,14 +121,14 @@ class MenusController extends Controller
     {
         try
         {
-            $menu = Menus::whereRaw('md5(mn_id) = ?', $id)->where('mn_deleted', 0)->first();
-            if(is_null($menu))
+            $role = Roles::whereRaw('md5(rl_id) = ?', $id)->where('rl_deleted', 0)->first();
+            if(is_null($role))
             {
                 return redirect()->route($this->default_route)->with('message', $this->warningMessage());
             }
 
-            $menu->mn_deleted = 1;
-            $menu->save();
+            $role->rl_deleted = 1;
+            $role->save();
 
             return redirect()->route($this->default_route)->with('message', $this->infoMessage('Record has been updated successfully.'));
         }
@@ -169,11 +149,11 @@ class MenusController extends Controller
 
         $data = [
             's_menu' => $this->prefix,
-            's_submenu' => $this->getSubMenu($this->prefix, $page, 'mn'),
+            's_submenu' => $this->getSubMenu($this->prefix, $page, 'rl'),
             'records' => $records,
             'search' => $search,
         ];
 
-        return view('pages.menus.'.$page, $data);
+        return view('pages.roles.'.$page, $data);
     }
 }

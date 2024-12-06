@@ -26,7 +26,7 @@ class Users extends Model
     public function menus(string $roleID)
     {
         $role_menus = [];
-        $menus = RoleMenus::where('rl_deleted', 0)->where('rl_active', 0)->where('rl_id', $roleID)->join('tbl_menus', 'tbl_role_menus.mn_id', 'tbl_menus.mn_id') ->get();
+        $menus = RoleMenus::where('rl_id', $roleID)->join('tbl_menus', 'tbl_role_menus.mn_id', 'tbl_menus.mn_id') ->get();
         foreach($menus as $mn)
         {
             $role_sub_menus = [];
