@@ -10,4 +10,9 @@ class Roles extends Model
     protected $primaryKey = 'rl_id';
     public $timestamps = false;
     public $incrementing = false;
+
+    public function menus()
+    {
+        return $this->hasMany(RoleMenus::class, 'rl_id');
+    }
 }

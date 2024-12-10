@@ -52,6 +52,7 @@
                                     @endif
                                 </td>
                                 <td>
+                                    <a href="{{ route('rl.view', md5($role->rl_id)) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('rl.edit', md5($role->rl_id)) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt"></i></a>
                                     <a href="{{ route('rl.delete', md5($role->rl_id)) }}" class="btn btn-danger btn-sm confirm-delete"><i class="fa fa-trash-alt"></i></a>
                                 </td>

@@ -36,7 +36,8 @@ abstract class Controller
     {
         $actions = [
             'add',
-            'edit'
+            'edit',
+            'view'
         ];
 
         return in_array($page, $actions);

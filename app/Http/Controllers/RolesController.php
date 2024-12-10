@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menus;
+use App\Models\RoleMenus;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\Roles;
+use App\Models\RoleSubMenus;
+use App\Models\SubMenus;
 
 class RolesController extends Controller
 {
@@ -131,6 +135,97 @@ class RolesController extends Controller
             $role->save();
 
             return redirect()->route($this->default_route)->with('message', $this->infoMessage('Record has been updated successfully.'));
+        }
+        catch(Exception $e)
+        {
+            return redirect()->route($this->default_route)->with('message', $this->dangerMessage());
+        }
+    }
+
+    public function menus(string $id)
+    {
+        $menus = Menus::where('mn_deleted', 0)->with(['subs'])->get();
+
+        $role_menus = [];
+        $r_menus = Roles::whereRaw('md5(rl_id) = ?', $id)->with(['menus'])->get();
+        foreach($r_menus as $role)
+        {
+            foreach($role->menus as $menu)
+            {
+                $role_menus[] = md5($menu->mn_id);
+                $subs = RoleSubMenus::where('rlmn_id', $menu->rlmn_id)->get();
+                foreach($subs as $sub)
+                {
+                    $role_menus[] = md5($sub->sbmn_id);
+                }
+            }
+        }
+
+        $data = [
+            'menus' => $menus,
+            'role_menus' => $role_menus,
+            'id' => $id,
+        ];
+
+        return $this->render('view', $data);
+    }
+
+    public function saveMenus(Request $request)
+    {
+        $inputs = $request->validate([
+            'id' => 'required',
+            'menus' => 'array',
+            'menus.*' => 'string|distinct',
+            'subs' => 'array',
+            'subs.*' => 'string|distinct'
+        ]);
+
+        try
+        {
+            // Check if the ID is existing record
+            $role = Roles::whereRaw('md5(rl_id) = ?', $inputs['id'])->where('rl_deleted', 0)->first();
+            if(is_null($role))
+            {
+                return redirect()->route($this->default_route)->with('message', $this->warningMessage());
+            }
+
+            // Delete existing role menus and sub menus
+            $e_menus = RoleMenus::where('rl_id', $role->rl_id)->get();
+            foreach($e_menus as $menu)
+            {
+                // Delete role sub menus
+                RoleSubMenus::where('rlmn_id', $menu->rlmn_id)->delete();
+                RoleMenus::find($menu->rlmn_id)->delete();
+            }
+
+            // Main Menus
+            foreach($inputs['menus'] as $menu)
+            {
+                $s_menu = Menus::whereRaw('md5(mn_id) = ?', $menu)->first();
+                $r_menu = new RoleMenus();
+                $r_menu->rl_id = $role->rl_id;
+                $r_menu->mn_id = $s_menu->mn_id;
+                $r_menu->save();
+
+                // Sub Menus
+                if(isset($inputs['subs']))
+                {
+                    foreach($inputs['subs'] as $sub)
+                    {
+                        $arr = explode('|', $sub);
+                        if(count($arr) == 2 && $arr[1] == $menu)
+                        {
+                            $sb_menu = SubMenus::whereRaw('md5(sbmn_id) = ?', $arr[0])->first();
+                            $rs_menu = new RoleSubMenus();
+                            $rs_menu->rlmn_id = $r_menu->rlmn_id;
+                            $rs_menu->sbmn_id = $sb_menu->sbmn_id;
+                            $rs_menu->save();
+                        }
+                    }
+                }
+            }
+
+            return redirect()->route($this->default_route)->with('message', $this->infoMessage());
         }
         catch(Exception $e)
         {

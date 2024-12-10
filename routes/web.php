@@ -47,9 +47,11 @@ Route::middleware(Authorized::class)->group(function() {
             Route::get('/add', [RolesController::class, 'add'])->name('rl.add');
             Route::get('{id}/edit', [RolesController::class, 'edit'])->name('rl.edit');
             Route::get('{id}/delete', [RolesController::class, 'destroy'])->name('rl.delete');
+            Route::get('{id}/menus', [RolesController::class, 'menus'])->name('rl.view');
 
             Route::post('/create', [RolesController::class, 'create'])->name('rl.create');
             Route::post('/update', [RolesController::class, 'update'])->name('rl.update');
+            Route::post('/menus', [RolesController::class, 'saveMenus'])->name('rl.menus');
         });
     });
 });

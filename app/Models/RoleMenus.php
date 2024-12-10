@@ -9,4 +9,9 @@ class RoleMenus extends Model
     protected $table = 'tbl_role_menus';
     protected $primaryKey = 'rlmn_id';
     public $timestamps = false;
+
+    public function subMenus()
+    {
+        return $this->hasMany(RoleSubMenus::class, 'rlmn_id');
+    }
 }
